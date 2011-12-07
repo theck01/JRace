@@ -1,0 +1,78 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXFileReference section */
+		3A39460314896E9000397FF2 /* Main.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; name = Main.java; path = Source/Main.java; sourceTree = "<group>"; };
+		3AF56520148BF5620014E5C9 /* JRaceCarModel.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; name = JRaceCarModel.java; path = Source/JRaceCarModel.java; sourceTree = "<group>"; };
+		3AF56521148C11930014E5C9 /* JRaceConstants.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; name = JRaceConstants.java; path = Source/JRaceConstants.java; sourceTree = "<group>"; };
+		3AF56522148C342A0014E5C9 /* JRaceTrack.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; name = JRaceTrack.java; path = Source/JRaceTrack.java; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		3AEB8C9614896DBC00D419A0 = {
+			isa = PBXGroup;
+			children = (
+				3A39460314896E9000397FF2 /* Main.java */,
+				3AF56522148C342A0014E5C9 /* JRaceTrack.java */,
+				3AF56520148BF5620014E5C9 /* JRaceCarModel.java */,
+				3AF56521148C11930014E5C9 /* JRaceConstants.java */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXProject section */
+		3AEB8C9814896DBC00D419A0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "Tufts University";
+			};
+			buildConfigurationList = 3AEB8C9B14896DBC00D419A0 /* Build configuration list for PBXProject "JRace" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3AEB8C9614896DBC00D419A0;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		3AEB8C9D14896DBC00D419A0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		3AEB8C9E14896DBC00D419A0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3AEB8C9B14896DBC00D419A0 /* Build configuration list for PBXProject "JRace" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3AEB8C9D14896DBC00D419A0 /* Debug */,
+				3AEB8C9E14896DBC00D419A0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3AEB8C9814896DBC00D419A0 /* Project object */;
+}
