@@ -1,0 +1,98 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXFileReference section */
+		3A45D62B1493C2C500B7ED12 /* JRaceCar.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; name = JRaceCar.java; path = ImageView/JRaceCar.java; sourceTree = "<group>"; };
+		3AC98B6C148FEED600D7DFE5 /* Scene.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; name = Scene.java; path = ImageView/Scene.java; sourceTree = "<group>"; };
+		3AC98B6D148FEED600D7DFE5 /* Main.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; name = Main.java; path = ImageView/Main.java; sourceTree = "<group>"; };
+		3AC98B6E148FEED600D7DFE5 /* Lights.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; name = Lights.java; path = ImageView/Lights.java; sourceTree = "<group>"; };
+		3AC98B6F148FEED600D7DFE5 /* LightButton.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; name = LightButton.java; path = ImageView/LightButton.java; sourceTree = "<group>"; };
+		3AC98B82148FFDC800D7DFE5 /* JRaceTreeScene.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; name = JRaceTreeScene.java; path = ImageView/JRaceTreeScene.java; sourceTree = "<group>"; };
+		3AC98B83148FFDC800D7DFE5 /* JRaceTreeModel.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; name = JRaceTreeModel.java; path = ImageView/JRaceTreeModel.java; sourceTree = "<group>"; };
+		3AC98B84148FFDC800D7DFE5 /* JRaceSceneGrid.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; name = JRaceSceneGrid.java; path = ImageView/JRaceSceneGrid.java; sourceTree = "<group>"; };
+		3AC98B85148FFDC800D7DFE5 /* JRaceGrid.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; name = JRaceGrid.java; path = ImageView/JRaceGrid.java; sourceTree = "<group>"; };
+		3AC98B86148FFDC800D7DFE5 /* JRaceConstants.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; name = JRaceConstants.java; path = ImageView/JRaceConstants.java; sourceTree = "<group>"; };
+		3AC98B87148FFDC800D7DFE5 /* JRaceCarModel.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; name = JRaceCarModel.java; path = ImageView/JRaceCarModel.java; sourceTree = "<group>"; };
+		3AC98B881490003400D7DFE5 /* JRaceRoadGrid.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; name = JRaceRoadGrid.java; path = ImageView/JRaceRoadGrid.java; sourceTree = "<group>"; };
+		3AC98B891490019600D7DFE5 /* JRaceRoadCorner.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; name = JRaceRoadCorner.java; path = ImageView/JRaceRoadCorner.java; sourceTree = "<group>"; };
+		3AC98B8A1490065500D7DFE5 /* JRaceSky.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; name = JRaceSky.java; path = ImageView/JRaceSky.java; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		3A2DB9D4148EC85C00E19D76 = {
+			isa = PBXGroup;
+			children = (
+				3AC98B82148FFDC800D7DFE5 /* JRaceTreeScene.java */,
+				3AC98B83148FFDC800D7DFE5 /* JRaceTreeModel.java */,
+				3AC98B84148FFDC800D7DFE5 /* JRaceSceneGrid.java */,
+				3AC98B85148FFDC800D7DFE5 /* JRaceGrid.java */,
+				3AC98B881490003400D7DFE5 /* JRaceRoadGrid.java */,
+				3AC98B891490019600D7DFE5 /* JRaceRoadCorner.java */,
+				3AC98B8A1490065500D7DFE5 /* JRaceSky.java */,
+				3AC98B86148FFDC800D7DFE5 /* JRaceConstants.java */,
+				3AC98B87148FFDC800D7DFE5 /* JRaceCarModel.java */,
+				3AC98B6C148FEED600D7DFE5 /* Scene.java */,
+				3AC98B6D148FEED600D7DFE5 /* Main.java */,
+				3A45D62B1493C2C500B7ED12 /* JRaceCar.java */,
+				3AC98B6E148FEED600D7DFE5 /* Lights.java */,
+				3AC98B6F148FEED600D7DFE5 /* LightButton.java */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXProject section */
+		3A2DB9D6148EC85C00E19D76 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "Tufts University";
+			};
+			buildConfigurationList = 3A2DB9D9148EC85C00E19D76 /* Build configuration list for PBXProject "JRaceVisualizer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3A2DB9D4148EC85C00E19D76;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		3A2DB9DB148EC85C00E19D76 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		3A2DB9DC148EC85C00E19D76 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3A2DB9D9148EC85C00E19D76 /* Build configuration list for PBXProject "JRaceVisualizer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3A2DB9DB148EC85C00E19D76 /* Debug */,
+				3A2DB9DC148EC85C00E19D76 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3A2DB9D6148EC85C00E19D76 /* Project object */;
+}

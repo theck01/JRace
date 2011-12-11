@@ -11,7 +11,7 @@ import java.awt.Font;
  * Create scene graph here.
  */
 public class Scene extends BranchGroup {
-    public Scene (SimpleUniverse uni) {
+    public Scene (JRaceCar car) {
 		
 		//
 		
@@ -27,6 +27,7 @@ public class Scene extends BranchGroup {
 		objTranslate3.addChild(objRotate3);
 		
 		// Add the car, this time make it a separate class
-		objRotate3.addChild (new JRaceCar(uni,255,255,255));
+		objRotate3.addChild (car);
+		this.addChild(new Box());
     }
 }

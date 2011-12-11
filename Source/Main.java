@@ -12,7 +12,12 @@ import com.sun.j3d.utils.geometry.*;
 /**
  * Example using lighting
  */
+ 
+//DONT FORGET TO CALL man.start();
 public class Main extends JFrame {
+
+	JRaceManager man;
+	
     public static void main (String[] args) {
 		new Main();
     }
@@ -29,10 +34,12 @@ public class Main extends JFrame {
 		 * Set up SimpleUniverse, with our own Canvas3D
 		 */
 		Canvas3D canvas3D = new Canvas3D (SimpleUniverse.getPreferredConfiguration());
-		SimpleUniverse universe = new SimpleUniverse (canvas3D);
-		Scene scene = new Scene ();
+		SimpleUniverse universe = new SimpleUniverse (canvas3D, 4);
+		JRaceCar car = new JRaceCar(universe, 255, 255, 255);
+		Scene scene = new Scene (car);
+		man = new JRaceManager(car);
 		Lights lights = new Lights (scene);
-		addKbdNavig (universe, scene);
+		
 		
 		/*
 		 * Install our scene graph
@@ -59,15 +66,5 @@ public class Main extends JFrame {
 		panel.add (new LightButton (lights.getAmbientLight(), "Ambient light"));
 		
 		setVisible (true);
-    }
-	
-    /*
-     * Set up for keyboard navigation, as usual.
-     */
-    private void addKbdNavig (SimpleUniverse universe, BranchGroup scene) {
-		KeyNavigatorBehavior kbdBehavior = new KeyNavigatorBehavior (
-																	 universe.getViewingPlatform().getViewPlatformTransform());
-		kbdBehavior.setSchedulingBounds (new BoundingSphere (new Point3d(), Float.MAX_VALUE));
-		scene.addChild (kbdBehavior);
     }
 }

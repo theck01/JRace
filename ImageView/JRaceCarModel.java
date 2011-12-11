@@ -10,6 +10,8 @@ public class JRaceCarModel extends BranchGroup{
 	
 	public JRaceCarModel(int r, int g, int b){		
 		
+		super();
+		
 		//Materials and appearances
 		Material car_mat = new Material();
 		car_mat.setDiffuseColor((float)r/255, (float)g/255, (float)b/255);

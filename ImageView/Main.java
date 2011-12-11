@@ -29,8 +29,8 @@ public class Main extends JFrame {
 		 * Set up SimpleUniverse, with our own Canvas3D
 		 */
 		Canvas3D canvas3D = new Canvas3D (SimpleUniverse.getPreferredConfiguration());
-		SimpleUniverse universe = new SimpleUniverse (canvas3D);
-		Scene scene = new Scene ();
+		SimpleUniverse universe = new SimpleUniverse (canvas3D, 4);
+		Scene scene = new Scene (universe);
 		Lights lights = new Lights (scene);
 		addKbdNavig (universe, scene);
 		
