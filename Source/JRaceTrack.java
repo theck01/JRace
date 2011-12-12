@@ -3,13 +3,21 @@ import javax.media.j3d.*;
 import javax.vecmath.*;
 import com.sun.j3d.utils.geometry.*;
 import java.lang.Math;
+import java.awt.geom.*;
 
 public class JRaceTrack extends BranchGroup{
 
 	protected JRaceGrid[][] track_array; //first index is z direction, second is in the x direction
 	protected int[][] seasons;
 	
-	public JRaceTrack(int season){
+	protected static final int INVALID_TERRAIN = -1;
+	protected static final int SPRING_CHECKPOINT = 0;
+	protected static final int SUMMER_CHECKPOINT = 1;
+	protected static final int FALL_CHECKPOINT = 2;
+	protected static final int WINTER_CHECKPOINT = 3;
+	
+	
+	public JRaceTrack(){
 	
 		track_array = new JRaceGrid[30][30];
 		for(int i=0; i<30; i++){
@@ -77,11 +85,11 @@ public class JRaceTrack extends BranchGroup{
 			}
 		}
 		
-		fill(season);
+		fill();
 	}
 	
 	//Function fills all gaps in track with tree scenes. should be called after the road has been completely constructed
-	protected void fill(int season){
+	protected void fill(){
 		
 		for(int i=0; i<30; i++){
 			for(int j=0; j<30; j++){
@@ -106,6 +114,59 @@ public class JRaceTrack extends BranchGroup{
 		}
 		else{
 			System.out.println("Cannot add, indicies out of bounds");
+		}
+	}
+	
+	public Point2D.Float getCheckpointLocation(int checkpoint){
+		switch(checkpoint){
+				case SPRING_CHECKPOINT:
+					return new Point2D.Float(3.5f*JRaceGrid.SIZE, 17f*JRaceGrid.SIZE);
+				case SUMMER_CHECKPOINT:
+					return new Point2D.Float(17f*JRaceGrid.SIZE, 25.5f*JRaceGrid.SIZE);
+				case FALL_CHECKPOINT:
+					return new Point2D.Float(25.5f*JRaceGrid.SIZE, 13f*JRaceGrid.SIZE);
+				default:
+					return new Point2D.Float(13f*JRaceGrid.SIZE, 3.5f*JRaceGrid.SIZE);
+		}
+	}
+	
+	public float getCheckpointDirection(int checkpoint){
+		switch(checkpoint){
+			case SPRING_CHECKPOINT:
+				return 0f;
+			case SUMMER_CHECKPOINT:
+				return 90f;
+			case FALL_CHECKPOINT:
+				return 180f;
+			default:
+				return 270f;
+		}
+	}
+	
+	public int validTerrain(float x, float z){
+		
+		int x_index = (int)(x/JRaceGrid.SIZE);
+		int z_index = (int)(z/JRaceGrid.SIZE);
+		
+		if(!track_array[z_index][x_index].navagatable()){
+			return INVALID_TERRAIN;
+		}
+		
+		if(x_index < 15){
+			if(z_index < 15){
+				return WINTER_CHECKPOINT;
+			}
+			else{
+				return SPRING_CHECKPOINT;
+			}
+		}
+		else{
+			if(z_index < 15){
+				return FALL_CHECKPOINT;
+			}
+			else{
+				return SUMMER_CHECKPOINT;
+			}
 		}
 	}
 }

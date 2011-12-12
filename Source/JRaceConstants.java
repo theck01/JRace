@@ -8,7 +8,7 @@ public class JRaceConstants{
 	//Car positioning constants
 	public static final float car_start_x = 3.5f*JRaceGrid.SIZE;
 	public static final float car_start_y = 0.0f;
-	public static final float car_start_z = 10*JRaceGrid.SIZE;
+	public static final float car_start_z = 13*JRaceGrid.SIZE;
 	public static final float car_rotate_y = 0;
 	public static final float rot_y_offset = 90.0f;
 	
@@ -20,6 +20,8 @@ public class JRaceConstants{
 	//Time constants
 	public static final int default_time_interval = 10; //ten milliseconds, or 1/100 s
 	
+	//Checkpoint
+	public static final int default_checkpoint = JRaceTrack.SPRING_CHECKPOINT;
 	private JRaceConstants(){}
 	
 	//function that converts miles per hour into meters per hundredth second

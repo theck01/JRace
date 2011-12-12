@@ -18,12 +18,17 @@ public class JRaceCar extends BranchGroup{
 	//car model,  for braking animation
 	protected JRaceCarModel model;
 	
+	protected JRaceTrack track;
+	
 	//position, direction, and speed data
 	protected Point2D.Float location; //location of the car in world coordinates
 	protected float direction; //angle in degrees describing current orientation of the car
 	protected float speed; //speed in miles per hour, for display purposes
 	protected int gear; //a total of 6 gears is offered, 1-5 being forward gears
 						//and 0 being reverse
+	protected int checkpoint;
+	protected boolean about_to_lap;
+	protected int laps;
 	
 	//constants
 	public static final float MAX_SPEED = 115.0f; //in miles per hour
@@ -45,10 +50,15 @@ public class JRaceCar extends BranchGroup{
 		
 		super();
 		
+		track = null;
+		
 		speed = 0.0f;
 		gear = 1; //Always start in first gear
 		location = new Point2D.Float(JRaceConstants.car_start_x, JRaceConstants.car_start_z);
 		direction = JRaceConstants.car_rotate_y;
+		checkpoint = JRaceConstants.default_checkpoint;
+		about_to_lap = false;
+		laps = 1;
 		
 		MultiTransformGroup multi_group = universe.getViewingPlatform().getMultiTransformGroup();
 		
@@ -75,6 +85,10 @@ public class JRaceCar extends BranchGroup{
 		Transform3D camera_rotate = new Transform3D();
 		camera_rotate.rotY(Math.toRadians(-JRaceConstants.rot_y_offset)); //so the camera points behind the car
 		multi_group.getTransformGroup(3).setTransform(camera_rotate);
+	}
+	
+	public void setTrack(JRaceTrack track){
+		this.track = track;
 	}
 	
 	//function increases car speed and calls move()
@@ -163,6 +177,28 @@ public class JRaceCar extends BranchGroup{
 		
 		location.setLocation(x,z);
 		
+		int cp = track.validTerrain(x, z);
+		if(cp == track.INVALID_TERRAIN){
+		
+			reset();
+			origin_x = (float)location.getX();
+			origin_z = (float)location.getY();
+			
+			x = move_x*JRaceConstants.MPHToMPHS(speed)+origin_x;
+			z = move_z*JRaceConstants.MPHToMPHS(speed)+origin_z;
+		}
+		else{
+			this.checkpoint = cp;
+			if(checkpoint == JRaceTrack.FALL_CHECKPOINT){
+				about_to_lap = true;
+			}
+			if(checkpoint == JRaceTrack.SPRING_CHECKPOINT && about_to_lap){
+					laps++;
+					about_to_lap = false;
+					System.out.println("On lap: " + Integer.toString(laps));
+			}
+		}
+		
 		//update model
 		Transform3D new_translation = new Transform3D();
 		new_translation.setTranslation(new Vector3f(x, 0.0f, z));
@@ -188,7 +224,7 @@ public class JRaceCar extends BranchGroup{
 				direction -= MAX_ANG_SPEED/100;
 			}
 		}
-		else{
+		else if(left_or_right == 0){
 			return;
 		}
 		
@@ -197,6 +233,13 @@ public class JRaceCar extends BranchGroup{
 		new_rotation.rotY(Math.toRadians(direction - JRaceConstants.rot_y_offset));
 		group_rotate.setTransform(new_rotation);
 	}
-
+	
+	public void reset(){
+		location = track.getCheckpointLocation(checkpoint);
+		direction = track.getCheckpointDirection(checkpoint);
+		speed = 0;
+		gear = 1;
+		turn(-1);
+	}
 }
 
