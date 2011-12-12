@@ -7,6 +7,7 @@ import java.lang.Math;
 public class JRaceTrack extends BranchGroup{
 
 	protected JRaceGrid[][] track_array; //first index is z direction, second is in the x direction
+	protected int[][] seasons;
 	
 	public JRaceTrack(int season){
 	
@@ -14,6 +15,26 @@ public class JRaceTrack extends BranchGroup{
 		for(int i=0; i<30; i++){
 			for(int j=0; j<30; j++){
 				track_array[i][j] = null;
+			}
+		}
+		
+		seasons = new int[30][30];
+		
+		for(int i=0; i<15; i++){
+			for(int j=0; j<15; j++){
+				seasons[i][j] = JRaceTreeModel.WINTER;
+			}
+		}
+		
+		for(int i=0; i<15; i++){
+			for(int j=15; j<30; j++){
+				seasons[i][j] = JRaceTreeModel.FALL;
+			}
+		}
+		
+		for(int i=15; i<30; i++){
+			for(int j=0; j<30; j++){
+				seasons[i][j] = JRaceTreeModel.SPRING;
 			}
 		}
 		
@@ -31,28 +52,28 @@ public class JRaceTrack extends BranchGroup{
 		}
 		
 		for(int i=5; i<25; i++){
-			add(new JRaceSceneGrid(season), i, 5);
-			add(new JRaceSceneGrid(season), i, 24);
+			add(new JRaceSceneGrid(seasons[5][i]), i, 5);
+			add(new JRaceSceneGrid(seasons[24][i]), i, 24);
 		}
 		
 		for(int i=6; i<24; i++){
-			add(new JRaceSceneGrid(season), 5, i);
-			add(new JRaceSceneGrid(season), 24, i);
+			add(new JRaceSceneGrid(seasons[i][5]), 5, i);
+			add(new JRaceSceneGrid(seasons[i][24]), 24, i);
 		}
 		
 		for(int i=2; i<28; i++){
-			add(new JRaceSceneGrid(season), 2, i);
-			add(new JRaceSceneGrid(season), 27, i);
+			add(new JRaceSceneGrid(seasons[i][2]), 2, i);
+			add(new JRaceSceneGrid(seasons[i][27]), 27, i);
 		}
 		
 		for(int i=3; i<27; i++){
-			add(new JRaceSceneGrid(season), i, 2);
-			add(new JRaceSceneGrid(season), i, 27);
+			add(new JRaceSceneGrid(seasons[2][i]), i, 2);
+			add(new JRaceSceneGrid(seasons[27][i]), i, 27);
 		}
 		
 		for(int i=9; i<22; i++){
 			for(int j=9; j<22; j++){
-				add(new JRaceSceneGrid(false, season), i, j);
+				add(new JRaceSceneGrid(false, seasons[j][i]), i, j);
 			}
 		}
 		
@@ -65,7 +86,7 @@ public class JRaceTrack extends BranchGroup{
 		for(int i=0; i<30; i++){
 			for(int j=0; j<30; j++){
 				if(track_array[i][j] == null){
-					add(new JRaceTreeScene(season), j, i);
+					add(new JRaceTreeScene(seasons[i][j]), j, i);
 				}
 			}
 		}
