@@ -27,16 +27,16 @@ public class JRaceCar extends BranchGroup{
 	
 	//constants
 	public static final float MAX_SPEED = 115.0f; //in miles per hour
-	public static final float MAX_REVERSE = 20.0f; //in miles per hour
-	public static final float BRAKE_RATE = 10.22f; //in miles per hour per second
-	public static final float COAST_RATE = 1.022f; //in miles per hour per second
-	public static final float BASE_ACCEL_RATE = 15.0f; //in miles per hour per second
+	public static final float MAX_REVERSE = -20.0f; //in miles per hour
+	public static final float BRAKE_RATE = 100.00f; //in miles per hour per second
+	public static final float COAST_RATE = 20.0f; //in miles per hour per second
+	public static final float BASE_ACCEL_RATE = 50.0f; //in miles per hour per second
 	public static final float GEAR_2_SPEED = 15.0f; //in miles per hour
 	public static final float GEAR_3_SPEED = 30.0f; //in miles per hour
 	public static final float GEAR_4_SPEED = 50.0f; //in miles per hour
 	public static final float GEAR_5_SPEED = 80.0f; //in miles per hour
 	public static final float TURNING_CUTOFF = 45.0f; //in miles per hour
-	public static final float MAX_ANG_SPEED = 45.0f; //in degrees per second
+	public static final float MAX_ANG_SPEED = 70.0f; //in degrees per second
 	public static final int LEFT = 1;
 	public static final int RIGHT = 2;
 	
@@ -79,7 +79,14 @@ public class JRaceCar extends BranchGroup{
 	
 	//function increases car speed and calls move()
 	public void accelerate(){
-		speed += ((8.0f-gear)/7.0f)*JRaceConstants.MPHToMPHS(BASE_ACCEL_RATE);
+		
+		if(speed > 0){
+			speed = speed + ((8.0f-gear)/7.0f)*JRaceConstants.MPHToMPHS(BASE_ACCEL_RATE);
+		}
+		else{
+			
+			speed = speed + JRaceConstants.MPHToMPHS(BRAKE_RATE);
+		}
 		if(speed > MAX_SPEED){
 			speed = MAX_SPEED;
 		}
@@ -90,13 +97,14 @@ public class JRaceCar extends BranchGroup{
 	//function gradually pushes car speed to 0 and calls move()
 	public void coast(){
 		if(speed > 0){
-			speed -= JRaceConstants.MPHToMPHS(COAST_RATE);
+			speed = speed - JRaceConstants.MPHToMPHS(COAST_RATE);
 			if(speed < 0){
 				speed = 0;
 			}
 		}
 		else if(speed < 0){
-			speed += JRaceConstants.MPHToMPHS(COAST_RATE);
+			//stopping when done reversing should happen quickly
+			speed = speed + JRaceConstants.MPHToMPHS(BRAKE_RATE);
 			if(speed > 0){
 				speed = 0;
 			}
@@ -107,7 +115,7 @@ public class JRaceCar extends BranchGroup{
 	
 	//function rapidly decreases car speed and calls move()
 	public void brake(){
-		speed -= JRaceConstants.MPHToMPHS(BRAKE_RATE);
+		speed = speed - JRaceConstants.MPHToMPHS(BRAKE_RATE);
 		if(speed < MAX_REVERSE){
 			speed = MAX_REVERSE;
 		}
@@ -144,14 +152,14 @@ public class JRaceCar extends BranchGroup{
 			return;
 		}
 		
-		float move_x = (float)Math.sin(direction);
-		float move_z = (float)Math.cos(direction);
+		float move_x = (float)Math.sin(Math.toRadians(direction));
+		float move_z = (float)Math.cos(Math.toRadians(direction));
 		
 		float origin_x = (float)location.getX();
 		float origin_z = (float)location.getY();
 		
-		float x = move_x*speed+origin_x;
-		float z = move_z*speed+origin_z;
+		float x = move_x*JRaceConstants.MPHToMPHS(speed)+origin_x;
+		float z = move_z*JRaceConstants.MPHToMPHS(speed)+origin_z;
 		
 		location.setLocation(x,z);
 		
@@ -166,7 +174,7 @@ public class JRaceCar extends BranchGroup{
 		
 		if(left_or_right == LEFT){
 			if(speed < TURNING_CUTOFF){
-				direction += speed/100;
+				direction += (speed/TURNING_CUTOFF)*(MAX_ANG_SPEED/100);
 			}
 			else{
 				direction += MAX_ANG_SPEED/100;
@@ -174,7 +182,7 @@ public class JRaceCar extends BranchGroup{
 		}
 		else if(left_or_right == RIGHT){
 			if(speed < TURNING_CUTOFF){
-				direction -= speed/100;
+				direction -= (speed/TURNING_CUTOFF)*(MAX_ANG_SPEED/100);
 			}
 			else{
 				direction -= MAX_ANG_SPEED/100;

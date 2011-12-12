@@ -30,7 +30,7 @@ public class Lights {
 		// Fill light
 		fillLight = new DirectionalLight (
 										  new Color3f (.5f, .5f, .5f),
-										  new Vector3f (1.f, 0, -1.f));
+										  new Vector3f (1.f, 0.5f, 1.0f));
 		fillLight.setInfluencingBounds (new BoundingSphere (new Point3d(), Float.MAX_VALUE));
 		fillLight.setCapability(Light.ALLOW_STATE_WRITE);
         scene.addChild(fillLight);

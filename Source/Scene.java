@@ -27,7 +27,7 @@ public class Scene extends BranchGroup {
 		objTranslate3.addChild(objRotate3);
 		
 		// Add the car, this time make it a separate class
-		objRotate3.addChild (car);
-		this.addChild(new Box());
+		this.addChild (car);
+		this.addChild(new JRaceTrack(JRaceTreeModel.FALL));
     }
 }

@@ -21,7 +21,7 @@ public class JRaceCarModel extends BranchGroup{
 		
 		Material window_mat = new Material();
 		window_mat.setDiffuseColor(0.0f, 1.0f, 1.0f);
-		window_mat.setAmbientColor(0.0f, JRaceConstants.ambient*1.0f, JRaceConstants.ambient*(b/255)*1.0f);
+		window_mat.setAmbientColor(0.0f, JRaceConstants.ambient*1.0f, JRaceConstants.ambient*1.0f);
 		Appearance windshield = new Appearance();
 		windshield.setMaterial(window_mat);
 		
@@ -30,6 +30,12 @@ public class JRaceCarModel extends BranchGroup{
 		wheel_mat.setAmbientColor(0.0f, 0.0f, 0.0f);
 		Appearance wheels = new Appearance();
 		wheels.setMaterial(wheel_mat);
+		
+		Material brake_mat = new Material();
+		brake_mat.setDiffuseColor(0.7f, 0.0f, 0.0f);
+		brake_mat.setAmbientColor(JRaceConstants.ambient*0.7f, 0.0f, 0.0f);
+		Appearance brakes = new Appearance();
+		brakes.setMaterial(brake_mat);
 		
 		//Vectors							  
 		Vector3f trunk_normal = new Vector3f(-0.6f, 0.8f, 0.0f);
@@ -202,6 +208,19 @@ public class JRaceCarModel extends BranchGroup{
 		wheel_translate_group.addChild(wheel_rotate_group);
 		this.addChild(wheel_translate_group);
 		
-		//TAIL LIGHTS !!!!!!!
+		//Brake lights
+		Transform3D brake_trans = new Transform3D();
+		brake_trans.setTranslation(new Vector3f(-2.0f, 0.4f, -0.8f));
+		TransformGroup brake_group = new TransformGroup(brake_trans);
+		this.addChild(brake_group);
+		Box left_light = new Box(0.025f, 0.075f, 0.1f, Box.GENERATE_NORMALS, brakes);
+		brake_group.addChild(left_light);
+		
+		brake_trans = new Transform3D();
+		brake_trans.setTranslation(new Vector3f(-2.0f, 0.4f, 0.8f));
+		brake_group = new TransformGroup(brake_trans);
+		this.addChild(brake_group);
+		Box right_light = new Box(0.025f, 0.075f, 0.1f, Box.GENERATE_NORMALS, brakes);
+		brake_group.addChild(right_light);						   						  
 	}
 }

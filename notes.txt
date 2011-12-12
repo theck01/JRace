@@ -3,18 +3,18 @@ Create the SimpleUniverse with two arguments: The Canvas3D model and the
 numTransforms. Set numTransforms to four, the first will be the translation and
 the second will the be rotation for the car. The second two set the rotation and
 translation for the camera offset from the car. Use the first two transforms with
-the car to determine it's position.
+the car to determine it's position // DONE.
 
 MAKE SURE THAT CAR ANGLE AND DIRECTION VECTOR CORRESPOND TO DESIRED MOVEMENT WHEN
-SETTING UP THE COURSE
+SETTING UP THE COURSE // DONE
 
 Linear increase to early flatline for steering rate, after ~30mph the steering
-ability of a car flatlines at some constant value
+ability of a car flatlines at some constant value // EDIT
 
-Step/Quadratic function models acceleration function
+Step/Quadratic function models acceleration function DONE
 
-Linear function models braking, fairly rapid response
+Linear function models braking, fairly rapid response // DONE
 
-Timer ticks every 0.01s
+Timer ticks every 0.01s // DONE
 
-Car is set to point along the positive Z axis with a direction value of 0
+Car is set to point along the positive Z axis with a direction value of 0 // CHECK IF TRUE
