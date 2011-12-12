@@ -16,6 +16,7 @@
 		3A68D2111492684200D5609A /* JRaceGrid.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; name = JRaceGrid.java; path = Source/JRaceGrid.java; sourceTree = "<group>"; };
 		3A68D213149269CA00D5609A /* JRaceCar.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; name = JRaceCar.java; path = Source/JRaceCar.java; sourceTree = "<group>"; };
 		3A68D21414926F9D00D5609A /* notes.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = notes.txt; sourceTree = "<group>"; };
+		3AABD265149695DA0073D151 /* JRaceFinishLine.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; name = JRaceFinishLine.java; path = Source/JRaceFinishLine.java; sourceTree = "<group>"; };
 		3ABFD8D21493F4F50017713F /* Scene.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; name = Scene.java; path = Source/Scene.java; sourceTree = "<group>"; };
 		3ABFD8D31493F4F50017713F /* Lights.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; name = Lights.java; path = Source/Lights.java; sourceTree = "<group>"; };
 		3ABFD8D41493F4F50017713F /* LightButton.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; name = LightButton.java; path = Source/LightButton.java; sourceTree = "<group>"; };
@@ -33,6 +34,7 @@
 				3A39460314896E9000397FF2 /* Main.java */,
 				3AF56520148BF5620014E5C9 /* JRaceCarModel.java */,
 				3A68D213149269CA00D5609A /* JRaceCar.java */,
+				3AABD265149695DA0073D151 /* JRaceFinishLine.java */,
 				3ABFD8D21493F4F50017713F /* Scene.java */,
 				3ABFD8D31493F4F50017713F /* Lights.java */,
 				3ABFD8D41493F4F50017713F /* LightButton.java */,

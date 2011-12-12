@@ -85,6 +85,8 @@ public class JRaceCar extends BranchGroup{
 		Transform3D camera_rotate = new Transform3D();
 		camera_rotate.rotY(Math.toRadians(-JRaceConstants.rot_y_offset)); //so the camera points behind the car
 		multi_group.getTransformGroup(3).setTransform(camera_rotate);
+		
+		System.out.println("On lap: " + Integer.toString(laps));
 	}
 	
 	public void setTrack(JRaceTrack track){
@@ -188,14 +190,22 @@ public class JRaceCar extends BranchGroup{
 			z = move_z*JRaceConstants.MPHToMPHS(speed)+origin_z;
 		}
 		else{
-			this.checkpoint = cp;
-			if(checkpoint == JRaceTrack.FALL_CHECKPOINT){
+			if(checkpoint == JRaceTrack.FALL_CHECKPOINT && cp == JRaceTrack.WINTER_CHECKPOINT){
 				about_to_lap = true;
 			}
+			else if(checkpoint == JRaceTrack.FALL_CHECKPOINT && cp == JRaceTrack.SUMMER_CHECKPOINT){
+				about_to_lap = false;
+			}
+			
+			checkpoint = cp;
 			if(checkpoint == JRaceTrack.SPRING_CHECKPOINT && about_to_lap){
-					laps++;
-					about_to_lap = false;
-					System.out.println("On lap: " + Integer.toString(laps));
+				laps++;
+				if(laps > 3){
+					System.out.println("You won!");
+					laps = 1;
+				}
+				about_to_lap = false;
+				System.out.println("On lap: " + Integer.toString(laps));
 			}
 		}
 		
