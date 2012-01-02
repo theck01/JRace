@@ -4,11 +4,18 @@ import javax.vecmath.*;
 import com.sun.j3d.utils.geometry.*;
 import java.lang.Math;
 import java.awt.geom.*;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.event.*;
 
-public class JRaceTrack extends BranchGroup{
+public class JRaceTrack extends BranchGroup implements ActionListener{
 
 	protected JRaceGrid[][] track_array; //first index is z direction, second is in the x direction
 	protected int[][] seasons;
+	protected JRaceSnowman snowman1;
+	protected JRaceSnowman snowman2;
+	protected Timer snowtime;
 	
 	protected static final int INVALID_TERRAIN = -1;
 	protected static final int SPRING_CHECKPOINT = 0;
@@ -86,6 +93,12 @@ public class JRaceTrack extends BranchGroup{
 		}
 		
 		fill();
+		
+		snowman1 = addSnowman(3.0f*JRaceGrid.SIZE, 15f*JRaceGrid.SIZE);
+		snowman2 = addSnowman(5.0f*JRaceGrid.SIZE, 15f*JRaceGrid.SIZE);
+		
+		snowtime = new Timer(JRaceConstants.default_time_interval, this);
+		snowtime.start();
 	}
 	
 	//Function fills all gaps in track with tree scenes. should be called after the road has been completely constructed
@@ -117,16 +130,32 @@ public class JRaceTrack extends BranchGroup{
 		}
 	}
 	
+	protected JRaceSnowman addSnowman(float x, float z){
+		Transform3D snow_trans = new Transform3D();
+		snow_trans.setTranslation(new Vector3f(x, 0.0f, z));
+		TransformGroup snow_group = new TransformGroup(snow_trans);
+		this.addChild(snow_group);
+		
+		Transform3D snow_rot = new Transform3D();
+		snow_rot.rotY(Math.toRadians(180));
+		TransformGroup snow_rotate = new TransformGroup(snow_rot);
+		snow_group.addChild(snow_rotate);
+		
+		JRaceSnowman snowman = new JRaceSnowman();
+		snow_rotate.addChild(snowman);
+		return snowman;
+	}
+	
 	public Point2D.Float getCheckpointLocation(int checkpoint){
 		switch(checkpoint){
 				case SPRING_CHECKPOINT:
-					return new Point2D.Float(3.5f*JRaceGrid.SIZE, 17f*JRaceGrid.SIZE);
+					return new Point2D.Float(4f*JRaceGrid.SIZE, 17f*JRaceGrid.SIZE);
 				case SUMMER_CHECKPOINT:
-					return new Point2D.Float(17f*JRaceGrid.SIZE, 25.5f*JRaceGrid.SIZE);
+					return new Point2D.Float(17f*JRaceGrid.SIZE, 26f*JRaceGrid.SIZE);
 				case FALL_CHECKPOINT:
-					return new Point2D.Float(25.5f*JRaceGrid.SIZE, 13f*JRaceGrid.SIZE);
+					return new Point2D.Float(26f*JRaceGrid.SIZE, 13f*JRaceGrid.SIZE);
 				default:
-					return new Point2D.Float(13f*JRaceGrid.SIZE, 3.5f*JRaceGrid.SIZE);
+					return new Point2D.Float(13f*JRaceGrid.SIZE, 4f*JRaceGrid.SIZE);
 		}
 	}
 	
@@ -168,5 +197,10 @@ public class JRaceTrack extends BranchGroup{
 				return SUMMER_CHECKPOINT;
 			}
 		}
+	}
+	
+	public void actionPerformed(ActionEvent e){
+		snowman1.move();
+		snowman2.move();
 	}
 }

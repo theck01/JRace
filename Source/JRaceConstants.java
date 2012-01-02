@@ -6,9 +6,9 @@ public class JRaceConstants{
 	public static final float ambient = 0.5f; //Sets the default ambient reflectivity
 	
 	//Car positioning constants
-	public static final float car_start_x = 3.5f*JRaceGrid.SIZE;
+	public static final float car_start_x = 4f*JRaceGrid.SIZE;
 	public static final float car_start_y = 0.0f;
-	public static final float car_start_z = 13*JRaceGrid.SIZE;
+	public static final float car_start_z = 14.5f*JRaceGrid.SIZE;
 	public static final float car_rotate_y = 0;
 	public static final float rot_y_offset = 90.0f;
 	

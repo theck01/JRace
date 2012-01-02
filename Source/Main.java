@@ -11,11 +11,7 @@ import com.sun.j3d.utils.behaviors.keyboard.*;
 import com.sun.j3d.utils.behaviors.vp.*;
 import com.sun.j3d.utils.geometry.*;
 
-/**
- * Example using lighting
- */
- 
-//DONT FORGET TO CALL man.start();
+
 public class Main extends JFrame implements ActionListener, KeyListener, FocusListener{
 
 	protected Timer master_clock;
@@ -25,31 +21,22 @@ public class Main extends JFrame implements ActionListener, KeyListener, FocusLi
 	protected int accelerate_state;
 	protected boolean running;
 	
-    public static void main (String[] args) {
+    public static void main(String[] args) {
 		new Main();
     }
 	
     public Main() {
-		/*
-		 * Here, we really need our own canvas, and our own JFrame,
-		 * so we can put some Swing widgets around the edge
-		 */
+	
 		setSize (500, 500);
 		setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
 		
-		/*
-		 * Set up SimpleUniverse, with our own Canvas3D
-		 */
-		Canvas3D canvas3D = new Canvas3D (SimpleUniverse.getPreferredConfiguration());
-		SimpleUniverse universe = new SimpleUniverse (canvas3D, 4);
+		Canvas3D canvas3D = new Canvas3D(SimpleUniverse.getPreferredConfiguration());
+		SimpleUniverse universe = new SimpleUniverse(canvas3D, 4);
 		car = new JRaceCar(universe, 0, 0, 255);
-		universe.getViewer().getView().setBackClipDistance(20.0);
-		Scene scene = new Scene (car);
-		Lights lights = new Lights (scene);
+		universe.getViewer().getView().setBackClipDistance(35.0); //sets the view distance so more of the track is visible
+		JRaceScene scene = new JRaceScene(car);
 		
-		/*
-		Setup controls
-		*/
+		//initialize methods and variables required to control car
 		setFocusable(true);
 		setFocusTraversalKeysEnabled(false);
 		addFocusListener(this);
@@ -63,23 +50,17 @@ public class Main extends JFrame implements ActionListener, KeyListener, FocusLi
 		
 		addKeyListener(this);
 		
-		/*
-		 * Install our scene graph
-		 */
+		//add scene
 		System.out.println("Compiling scene graph... this may take a while");
 		scene.compile();
 		System.out.println("Compiled");
-		universe.addBranchGraph (scene);
+		universe.addBranchGraph(scene);
 		
-		/*
-		 * Make a GUI layout in our JFrame,
-		 * with the 3D canvas in the center
-		 */
 		Container content = getContentPane();
-		content.setLayout (new BorderLayout());
-		content.add (canvas3D, BorderLayout.CENTER);
+		content.setLayout(new BorderLayout());
+		content.add(canvas3D, BorderLayout.CENTER);
 		
-		setVisible (true);
+		setVisible(true);
 		
 		start();
     }

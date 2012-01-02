@@ -1,0 +1,119 @@
+Alternative assignment 5: JRace, a Java3D racing game
+
+	Included source files contain a "racing" game that allows the user to
+drive a modeled car around a track. The control scheme uses only four buttons on
+the keyboard, and should be familiar to anyone who has played a FPS on a PC:
+	w - Accelerate Forward
+	s - Brake/Reverse
+	a - turn left
+	d - turn right
+	
+
+Project features:
+	-Animated snowmen at the end of the track (you may have to slow down to
+	 notice them, if you go by at full speed they get passed quickly), waving
+	 congradulatory flags on completing a lap
+	-Rudimentary collision detection, the user cannot drive off the course through
+	 trees, if the car is driven into the trees then the car is reset at the last
+	 checkpoint that they passed
+	-Lap Detection (the terminal outputs what lap the user is on) that does not
+	 count laps that are not completed in full, or in reverse
+	-Semi-random track, the path is always the same, but the positions, color,
+	 and height of the trees along the edges of the course are randomly generated
+	
+To compile and run, execute the following commands within the command prompt:
+	javac *.java
+	java Main
+
+
+
+A5 Design
+
+CLASS HIERARCHY:
+Main
+JRaceScene
+JRaceTrack
+JRaceCar
+JRaceCarModel
+JRaceSnowman
+JRaceSnowmanArm
+JRaceSnowmanHead
+JRaceGrid
+	JRaceRoadGrid
+	JRaceRoadCorner
+	JRaceSceneGrid
+		JRaceTreeScene
+JRaceTreeModel
+JRaceConstants
+
+
+AGGREGATION HIERARCHY: (The hierarchy is not standard here, as many classes exist
+				   only in the scene hierarchy and are not "owned" by any custom
+				   class)
+Main
+	JRaceScene
+		JRaceTrack (Track is created here, added to scene grid here)
+	JRaceCar
+		JRaceCarModel
+		JRaceTrack (Track is used here)
+			JRaceGrid array
+				JRaceTreeModel (some use JRaceTreeModels)
+			JRaceSnowman
+				JRaceSnowmanHead
+				JRaceSnowmanArm
+JRaceConstants	
+
+
+Main:
+	Creates the canvas and all objects needed to display the 3D scene. Also 
+	creates some of the scene elements, such as the JRaceCar and JRaceScene.Uses a
+	timer to animate movement and update JRaceCar variables. Listens for key input
+	and sends associated methods to the car when proper controls are used.
+
+JRaceScene:
+	Creates the lights and the JRaceTrack that compose the scene, adds do the 
+	scene graph
+
+JRaceTrack:
+	Creates all the JRaceGrids needed to display the track. Determines if a point
+	passed is a point that can be driven upon. Stores constants refering to check
+	points and regeneration points. Creates snowmen and the timer that drives
+	snowman animation.
+
+JRaceCar:
+	Creates the JRaceCarModel and adds it to the scene. In charge of all car
+	movement and regenerating properly after a "crash"
+
+JRaceCarModel:
+	Creates all primitives required to display the car, most of which isn't visible
+	But if it was you would see a nice little car model, painstakingly modeled for
+	little reason
+
+JRaceSnowman:
+	Creates primitives and JRaceSnowman components. Determines snowman arm movement.
+	Adds visible objects to the scene graph.
+
+JRaceSnowmanArm & JRaceSnowmanHead:
+	Creates snowman parts from primitives, adds to the scene graph
+
+JRaceGrid & Subclasses:
+	Creates a small 8x8 scene block that may be any of the following:
+	Road, a corner of the road, grass, trees planted in a grassy scene
+	in a variety of different color models. Each grid stores a boolean about
+	whether the JRaceCar can drive on top of said grid. Adds all visible elements
+	to the scene graph
+
+JRaceTreeModel:
+	Creates a tree from primitives and adds the tree to the scene graph. Coloring
+	of each tree is random within a range depending upon the "season" specified,
+	and height can be chosen from a range at creation.
+
+JRaceConstants:
+	Stores publicly available constants that can be used by any class. Also contains
+	static function that converts miles per hour into meters (unit of the game) per
+	hundredth second.
+
+
+	
+
+
